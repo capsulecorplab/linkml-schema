@@ -30,7 +30,7 @@ jobs:
       - name: Checkout github repo
         uses: actions/checkout@v4
 
-      - name: Exit if not on main branch
+      - name: Exit if not on main branch # see https://stackoverflow.com/questions/66458906/how-to-conditionally-run-github-workflow-action-only-for-tags-made-on-specific-b?rq=4
         if: github.ref == 'refs/heads/main'
         run: exit -1
 
