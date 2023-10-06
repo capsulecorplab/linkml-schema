@@ -29,6 +29,8 @@ jobs:
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout github repo
         uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
 
       - name: Store commit of ref # as per https://stackoverflow.com/questions/67503656/echo-github-action-environment-variables and https://stackoverflow.com/questions/59882715/use-environment-variable-in-github-action-if
         env:
