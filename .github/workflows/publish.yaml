@@ -34,8 +34,10 @@ jobs:
       #   if: github.ref == 'refs/heads/main'
       #   run: exit -1
 
-      - name: Dump github.ref context # as per https://stackoverflow.com/questions/67503656/echo-github-action-environment-variables
-        run: echo "$github.ref"
+      - name: Dump GitHub_REF # as per https://stackoverflow.com/questions/67503656/echo-github-action-environment-variables
+        env:
+          GITHUB_REF: ${{ github.ref }}
+        run: echo "$GITHUB_REF"
 
       - name: Install LinkML
         run: pip install linkml==1.5.6
