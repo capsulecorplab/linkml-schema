@@ -36,7 +36,7 @@ jobs:
         run: echo "GITHUB_REF_COMMIT = `git rev-list -n 1 $GITHUB_REF`" >> "$GITHUB_ENV"
 
       - name: Store commit of main # as per https://stackoverflow.com/questions/59882715/use-environment-variable-in-github-action-if
-        run: echo "GITHUB_MAIN_COMMIT = `git rev-list -n 1 refs/heads/main`" >> "$GITHUB_ENV"
+        run: echo "GITHUB_MAIN_COMMIT = `git rev-list -n 1 refs/remotes/origin/main`" >> "$GITHUB_ENV"
 
       - name: Echo env.GITHUB_REF_COMMIT_SAVED and GITHUB_REF_COMMIT
         env:
