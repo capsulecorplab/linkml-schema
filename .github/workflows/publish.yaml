@@ -34,13 +34,17 @@ jobs:
       #   if: github.ref == 'refs/heads/main'
       #   run: exit -1
 
-      - name: Dump GitHub_REF # as per https://stackoverflow.com/questions/67503656/echo-github-action-environment-variables
+      - name: Store commit of ref # as per https://stackoverflow.com/questions/67503656/echo-github-action-environment-variables
         env:
           GITHUB_REF: ${{ github.ref }}
-        run: echo "$GITHUB_REF"
+        run: git rev-list -n 1 $GITHUB_REF >> $GITHUB_REF_COMMIT
 
-      - name: Dump GitHub_REF2 # as per https://stackoverflow.com/questions/67503656/echo-github-action-environment-variables
-        run: echo "$GITHUB_REF"
+      - name: Store commit of main
+        run: git rev-list -n 1 main >> $GITHUB_MAIN_COMMIT
+
+      - name: Exit if ref commit not equal to main commit
+        if: $GITHUB_REF_COMMIT != $GITHUB_MAIN_COMMIT
+        run: exit -1
 
       - name: Install LinkML
         run: pip install linkml==1.5.6
