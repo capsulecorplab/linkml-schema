@@ -43,7 +43,7 @@ jobs:
         run: git rev-list -n 1 main >> $GITHUB_MAIN_COMMIT
 
       - name: Exit if ref commit not equal to main commit
-        if: $GITHUB_REF_COMMIT != $GITHUB_MAIN_COMMIT
+        if: GITHUB_REF_COMMIT != GITHUB_MAIN_COMMIT
         run: exit -1
 
       - name: Install LinkML
