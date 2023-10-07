@@ -43,8 +43,8 @@ jobs:
       - name: Echo env
         run: echo "${{ toJson(env) }}"
 
-      - name: Exit if ref commit not equal to main commit # see https://stackoverflow.com/questions/66458906/how-to-conditionally-run-github-workflow-action-only-for-tags-made-on-specific-b?rq=4
-        if: env.GITHUB_REF_COMMIT != env.GITHUB_MAIN_COMMIT
+      - name: Exit if ref commit not equal to main commit # see https://stackoverflow.com/questions/66458906/how-to-conditionally-run-github-workflow-action-only-for-tags-made-on-specific-b?rq=4 and https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-using-secrets
+        if: ${{ toJson(env.GITHUB_REF_COMMIT) != toJson(env.GITHUB_MAIN_COMMIT) }}
         run: exit -1
 
       - name: Install LinkML
