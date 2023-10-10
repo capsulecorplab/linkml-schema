@@ -34,8 +34,8 @@ jobs:
 
       - name: Determine if on main # as per https://stackoverflow.com/questions/59882715/use-environment-variable-in-github-action-if
         run: |
-          GIT_REF_COMMIT = `git rev-list -n 1 $GITHUB_REF`
-          GIT_MAIN_COMMIT = `git rev-list -n 1 refs/remotes/origin/main`
+          GIT_REF_COMMIT=$(git rev-list -n 1 $GITHUB_REF)
+          GIT_MAIN_COMMIT=$(git rev-list -n 1 refs/remotes/origin/main)
           if [[ $GIT_REF_COMMIT == $GIT_MAIN_COMMIT ]]; then
               echo "ON_MAIN=true" >> "$GITHUB_ENV"
           else
