@@ -43,6 +43,9 @@ jobs:
       - name: Echo env
         run: echo "${{ toJson(env) }}"
 
+      - name: Echo $GITHUB_REF_COMMIT
+        run: echo $GITHUB_REF_COMMIT
+
       - name: ls -la "$GITHUB_ENV" # as per https://stackoverflow.com/questions/67503656/echo-github-action-environment-variables
         run: ls -la "$GITHUB_ENV"
 
