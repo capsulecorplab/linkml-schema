@@ -35,23 +35,23 @@ jobs:
       - name: Store commit of ref # as per https://stackoverflow.com/questions/67503656/echo-github-action-environment-variables and https://stackoverflow.com/questions/59882715/use-environment-variable-in-github-action-if
         env:
           GITHUB_REF: ${{ github.ref }}
-        run: echo "GITHUB_REF_COMMIT = `git rev-list -n 1 $GITHUB_REF`" >> "$GITHUB_ENV" && cat "$GITHUB_ENV"
+        run: echo "GIT_REF_COMMIT = `git rev-list -n 1 $GITHUB_REF`" >> "$GITHUB_ENV" && cat "$GITHUB_ENV"
 
       - name: Store commit of main # as per https://stackoverflow.com/questions/59882715/use-environment-variable-in-github-action-if
-        run: echo "GITHUB_MAIN_COMMIT = `git rev-list -n 1 refs/remotes/origin/main`" >> "$GITHUB_ENV" && cat "$GITHUB_ENV"
+        run: echo "GIT_MAIN_COMMIT = `git rev-list -n 1 refs/remotes/origin/main`" >> "$GITHUB_ENV" && cat "$GITHUB_ENV"
 
       - name: Echo env
         run: echo "${{ toJson(env) }}"
 
-      - name: Echo $GITHUB_REF_COMMIT
-        run: echo $GITHUB_REF_COMMIT
+      - name: Echo $GIT_REF_COMMIT
+        run: echo $GIT_REF_COMMIT
 
       - name: ls -la "$GITHUB_ENV" # as per https://stackoverflow.com/questions/67503656/echo-github-action-environment-variables
         run: ls -la "$GITHUB_ENV"
 
       - name: Exit if ref commit not equal to main commit # see https://stackoverflow.com/questions/66458906/how-to-conditionally-run-github-workflow-action-only-for-tags-made-on-specific-b?rq=4 and https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-using-secrets
         run: |
-          if [[  ${{ toJson(env.GITHUB_REF_COMMIT) }} != ${{ toJson(env.GITHUB_MAIN_COMMIT) }} ]]; then
+          if [[  ${{ toJson(env.GIT_REF_COMMIT) }} != ${{ toJson(env.GIT_MAIN_COMMIT) }} ]]; then
               exit -1
           fi
 
