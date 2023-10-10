@@ -43,8 +43,8 @@ jobs:
       - name: Echo env
         run: echo "${{ toJson(env) }}"
 
-      - name: Echo "${{ env.GITHUB_REF_COMMIT }}" # as per https://stackoverflow.com/questions/67503656/echo-github-action-environment-variables
-        run: echo "${{ env.GITHUB_REF_COMMIT }}"
+      - name: Echo "$GITHUB_ENV" # as per https://stackoverflow.com/questions/67503656/echo-github-action-environment-variables
+        run: echo "$GITHUB_ENV"
 
       - name: Exit if ref commit not equal to main commit # see https://stackoverflow.com/questions/66458906/how-to-conditionally-run-github-workflow-action-only-for-tags-made-on-specific-b?rq=4 and https://docs.github.com/en/actions/using-workflows/workflow-syntax-for-github-actions#example-using-secrets
         run: |
