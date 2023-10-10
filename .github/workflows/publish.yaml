@@ -41,6 +41,7 @@ jobs:
           else
               echo "ON_MAIN=false" >> "$GITHUB_ENV"
           fi
+          cat $GITHUB_ENV
 
       - name: Skip Publish? # as per https://stackoverflow.com/questions/59882715/use-environment-variable-in-github-action-if
         if: env.ON_MAIN != 'true'
