@@ -26,6 +26,10 @@ jobs:
 
     # Steps represent a sequence of tasks that will be executed as part of the job
     steps:
+
+      - name: Install npm-cli-login
+        run: npm install -g npm-cli-login
+
       # Checks-out your repository under $GITHUB_WORKSPACE, so your job can access it
       - name: Checkout github repo
         uses: actions/checkout@v4
